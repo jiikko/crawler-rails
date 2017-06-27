@@ -12,6 +12,7 @@ require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
 require "slim"
+require "nested_form"
 require "crawler/rails"
 
 module Dummy

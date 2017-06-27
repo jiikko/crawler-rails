@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.2"
   s.add_dependency "slim-rails"
+  s.add_dependency "nested_form"
 
   s.add_development_dependency "mysql2"
 
