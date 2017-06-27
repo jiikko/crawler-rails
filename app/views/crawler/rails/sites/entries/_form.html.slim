@@ -1,0 +1,13 @@
+= form_for [@site, @entry] do |f|
+  p
+    = f.label :name
+    = f.text_field :name
+  p
+    = f.label :page_source
+    = f.select :page_source_id, @site.page_sources.map { |x| [x.url, x.id] }
+  p
+    = f.label :scraping_code
+    = f.text_area :scraping_code
+
+
+  p = f.submit

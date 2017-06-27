@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627110643) do
+ActiveRecord::Schema.define(version: 20170627121005) do
+
+  create_table "crawler_rails_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.integer "site_id"
+    t.integer "page_source_id", null: false
+    t.text "scraping_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_crawler_rails_entries_on_site_id"
+  end
 
   create_table "crawler_rails_page_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "url", limit: 191, null: false

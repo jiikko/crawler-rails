@@ -1,9 +1,21 @@
 h1 = @site.name
 p = link_to 'edit site name', edit_site_path(@site)
-p = link_to 'new page source', new_site_page_source_path(@site)
 h3 page sources
+p = link_to 'new page source', new_site_page_source_path(@site)
 ul
   - @site.page_sources.each do |page_source|
     li
       = page_source.url
+      | |
       = link_to :edit, [:edit, @site, page_source]
+h3 enties
+p = link_to 'new nenty', new_site_entry_path(@site)
+ul
+  - @site.entries.each do |entry|
+    li
+      = entry.name
+      | (from:
+      = entry.page_source.url
+      | )
+      | |
+      = link_to :edit, [:edit, @site, entry]
