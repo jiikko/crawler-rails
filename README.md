@@ -1,5 +1,6 @@
 # Crawler::Rails
-Short description and motivation.
+Crawler::Rails is rails engine.
+
 
 ## Usage
 How to use my plugin.
