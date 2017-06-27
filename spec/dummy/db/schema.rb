@@ -14,10 +14,8 @@ ActiveRecord::Schema.define(version: 20170627084507) do
 
   create_table "crawler_rails_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 191, null: false
-    t.string "url", limit: 191, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url"], name: "index_crawler_rails_sites_on_url"
   end
 
 end
