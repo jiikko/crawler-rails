@@ -9,14 +9,19 @@ Gem::Specification.new do |s|
   s.version     = Crawler::Rails::VERSION
   s.authors     = ["jiikko"]
   s.email       = ["n905i.1214@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Crawler::Rails."
-  s.description = "TODO: Description of Crawler::Rails."
+  s.homepage    = "https://github.com/jiikko/crawler-rails"
+  s.summary     = "rails engine of crawler"
+  s.description = s.summary
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 5.1.0"
+  s.add_dependency "rails", ">= 4.2"
 
   s.add_development_dependency "mysql2"
+
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "spring"
+  s.add_development_dependency "pry"
 end
