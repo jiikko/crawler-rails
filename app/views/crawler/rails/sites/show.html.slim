@@ -1,2 +1,9 @@
 h1 = @site.name
-= link_to 'edit site name', edit_site_path(@site)
+p = link_to 'edit site name', edit_site_path(@site)
+p = link_to 'new page source', new_site_page_source_path(@site)
+h3 page sources
+ul
+  - @site.page_sources.each do |page_source|
+    li
+      = page_source.url
+      = link_to :edit, [:edit, @site, page_source]
