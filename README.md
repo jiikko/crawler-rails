@@ -24,6 +24,8 @@ $ gem install crawler-rails
 ## Development
 * Show route
   * `bundle exec rake app:routes`
+* Import test data
+  * `bundle exec rake db:seed`
 
 ## TODO
 * クローリングをログに的なものを残す
