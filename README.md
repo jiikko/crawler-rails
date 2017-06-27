@@ -21,12 +21,14 @@ Or install it yourself as:
 $ gem install crawler-rails
 ```
 
-## Contributing
-Contribution directions go here.
-
-## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
 ## Development
 * Show route
   * `bundle exec rake app:routes`
+
+## TODO
+* クローリングをログに的なものを残す
+* クローリングしにいく
+  * scraping_code にどういう入力にするか
+  * 動作テストみたいリンクをおく
+* 定期実行する
+* 前回取得したデータと違いがあったら目立たせる
