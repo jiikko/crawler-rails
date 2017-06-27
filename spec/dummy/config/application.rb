@@ -11,6 +11,7 @@ require "action_cable/engine"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
+require "slim"
 require "crawler/rails"
 
 module Dummy

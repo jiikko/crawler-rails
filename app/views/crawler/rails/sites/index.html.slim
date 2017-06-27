@@ -1,0 +1,6 @@
+h1 site 一覧
+= link_to 'new site', new_site_path
+
+ul
+  - @sites.each do |site|
+    li = link_to site.name, site
