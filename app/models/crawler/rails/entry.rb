@@ -23,7 +23,7 @@ module Crawler::Rails
       else
         raise('unknown status')
       end
-    rescue => e
+    rescue StandardError, SyntaxError => e
       crawling_log.status_error!
       crawling_log.update!(error_trace: e.inspect)
     end

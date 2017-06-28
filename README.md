@@ -37,3 +37,5 @@ $ gem install crawler-rails
 ## TODO
 * 定期実行する
 * 前回取得したデータと違いがあったら目立たせる
+* 1サイトで1ページをcrawlする場合は保存済みのHTMLを参照する
+  * 毎回GETしない
