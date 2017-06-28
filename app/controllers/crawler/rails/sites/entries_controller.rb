@@ -45,6 +45,13 @@ module Crawler
           end
         end
 
+        def run
+          @site = Site.find(params[:site_id])
+          entry = @site.entries.find(params[:id])
+          entry.delay.scrape
+          redirect_to @site, notice: 'クローリングをキューしました'
+        end
+
         private
 
         def entry_params

@@ -13,3 +13,5 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'jquery-rails'
+gem 'delayed_job'
+gem 'delayed_job_active_record'

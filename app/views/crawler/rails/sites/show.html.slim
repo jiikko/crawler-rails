@@ -14,8 +14,11 @@ ul
   - @site.entries.each do |entry|
     li
       = entry.name
-      | (from:
-      = entry.page_source.name
-      | )
-      | |
-      = link_to :edit, [:edit, @site, entry]
+      ul
+        li
+          | from:
+          = entry.page_source.name
+          | :
+          = link_to entry.page_source.url, entry.page_source.url
+        li = link_to :edit, [:edit, @site, entry]
+        li = link_to 'run now', [:run, @site, entry], method: :post

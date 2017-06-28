@@ -9,7 +9,11 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'crawler-rails'
-gem 'jquery-rails' # dependency
+
+# dependency gems
+gem 'jquery-rails'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 ```
 
 And then execute:
@@ -27,6 +31,8 @@ $ gem install crawler-rails
   * `bundle exec rake app:routes`
 * Import test data
   * `bundle exec rake db:seed`
+* Start delayed_job
+  * `cd spec/dummy && bundle exec rake jobs:work`
 
 ## TODO
 * クローリングをログに的なものを残す
