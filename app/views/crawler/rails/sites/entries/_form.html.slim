@@ -10,4 +10,22 @@
     = f.text_area :scraping_code
 
 
+
+  hr
+  p scraping_code は、Block を記述してください。
+  pre
+    | #内部
+    br
+    | file = open(page_source.url)
+    br
+    | block = eval(scraping_code)
+    br
+    | block.call(Nokogiri::HTML(file.read.toutf8, nil, 'utf-8'))
+    br
+    br
+    | #scraping_code のサンプルコード
+    br
+    | ->(doc) { doc.search('body').first.text }
+    br
+
   p = f.submit
