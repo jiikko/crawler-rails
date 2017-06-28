@@ -37,19 +37,12 @@ module Crawler
           page_source = @site.page_sources.find(params[:page_source_id])
           entry = @site.entries.build(page_source_id: page_source.id,
                                       scraping_code: params[:scraping_code])
-          @out = entry.scrape
+          @out = entry.scrape[:message]
           @out = [@out, Time.now.to_s].join("\n") # add timestamp
           respond_to do |format|
             format.js { render :test_run }
             format.any { head :not_found }
           end
-        end
-
-        def run
-          @site = Site.find(params[:site_id])
-          entry = @site.entries.find(params[:id])
-          entry.delay.scrape
-          redirect_to @site, notice: 'クローリングをキューしました'
         end
 
         private

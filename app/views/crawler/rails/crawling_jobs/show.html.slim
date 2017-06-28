@@ -1,0 +1,12 @@
+= link_to :back, @crawling_job.site
+br
+= @crawling_job.created_at
+- @crawling_job.crawling_logs.each do |crawling_log|
+  h4 = crawling_log.entry.name
+  | 結果:
+  = crawling_log.status
+  br
+  - if crawling_log.status_success?
+    = crawling_log.out
+  - else
+    = crawling_log.error_trace

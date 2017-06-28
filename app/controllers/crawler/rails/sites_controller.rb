@@ -35,6 +35,12 @@ module Crawler
         end
       end
 
+      def crawl
+        @site = Site.find(params[:id])
+        @site.delay.crawl
+        redirect_to @site, notice: 'キューしました'
+      end
+
       private
 
       def site_params

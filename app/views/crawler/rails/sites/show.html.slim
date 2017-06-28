@@ -8,7 +8,7 @@ ul
       = page_source.url
       | |
       = link_to :edit, [:edit, @site, page_source]
-h3 enties
+h3 entries
 p = link_to 'new nenty', new_site_entry_path(@site)
 ul
   - @site.entries.each do |entry|
@@ -21,4 +21,10 @@ ul
           | :
           = link_to entry.page_source.url, entry.page_source.url
         li = link_to :edit, [:edit, @site, entry]
-        li = link_to 'run now', [:run, @site, entry], method: :post
+
+h3 crawl jobs
+= link_to 'crawl now', [:crawl, @site], method: :post
+
+ul
+  - @site.crawling_jobs.each do |crawling_job|
+    li = link_to crawling_job.created_at.to_s(:db), crawling_job_path(crawling_job)
