@@ -35,6 +35,5 @@ $ gem install crawler-rails
   * `cd spec/dummy && bundle exec rake jobs:work`
 
 ## TODO
-* クローリングをログに的なものを残す
 * 定期実行する
 * 前回取得したデータと違いがあったら目立たせる
