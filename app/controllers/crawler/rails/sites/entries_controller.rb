@@ -38,6 +38,7 @@ module Crawler
           entry = @site.entries.build(page_source_id: page_source.id,
                                       scraping_code: params[:scraping_code])
           @out = entry.scrape
+          @out = [@out, Time.now.to_s].join("\n") # add timestamp
           respond_to do |format|
             format.js { render :test_run }
             format.any { head :not_found }

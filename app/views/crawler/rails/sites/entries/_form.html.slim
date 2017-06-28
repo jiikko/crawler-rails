@@ -12,10 +12,8 @@
     = link_to 'test run', '#', data: 'test-run'
 
   h3 test run 結果
-  code data='result-for-test-run'
+  pre data='result-for-test-run'
     | (test run の結果がここに表示されます)
-
-
 
   hr
   p scraping_code は、Block を記述してください。
@@ -41,9 +39,10 @@ javascript:
     $(document).on('click', '[data=test-run]', function(e) {
       var entry_page_source_id = $('#entry_page_source_id').val();
       var entry_scraping_code = $('#entry_scraping_code').val();
-      $.post('#{test_run_site_entries_path(@site)}', {
-        'page_source_id': entry_page_source_id,
-        'scraping_code': entry_scraping_code,
+      $.post('#{test_run_site_entries_path(@site)}', { 'page_source_id': entry_page_source_id,
+                                                       'scraping_code': entry_scraping_code, }
+      ).fail(function(xhr, status, error) {
+        $("[data=result-for-test-run]").html('サーバでエラーが起きました:' + xhr.responseText);
       });
       return false;
     })
