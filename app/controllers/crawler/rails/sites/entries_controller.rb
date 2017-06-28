@@ -32,6 +32,18 @@ module Crawler
           end
         end
 
+        def test_run
+          @site = Site.find(params[:site_id])
+          page_source = @site.page_sources.find(params[:page_source_id])
+          entry = @site.entries.build(page_source_id: page_source.id,
+                                      scraping_code: params[:scraping_code])
+          @out = entry.scrape
+          respond_to do |format|
+            format.js { render :test_run }
+            format.any { head :not_found }
+          end
+        end
+
         private
 
         def entry_params

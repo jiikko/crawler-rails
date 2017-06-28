@@ -7,7 +7,13 @@
     = f.select :page_source_id, @site.page_sources.map { |x| [x.url, x.id] }
   p
     = f.label :scraping_code
-    = f.text_area :scraping_code
+    = f.text_area :scraping_code, size: '100x10'
+  p
+    = link_to 'test run', '#', data: 'test-run'
+
+  h3 test run 結果
+  code data='result-for-test-run'
+    | (test run の結果がここに表示されます)
 
 
 
@@ -29,3 +35,16 @@
     br
 
   p = f.submit
+
+javascript:
+  $(function() {
+    $(document).on('click', '[data=test-run]', function(e) {
+      var entry_page_source_id = $('#entry_page_source_id').val();
+      var entry_scraping_code = $('#entry_scraping_code').val();
+      $.post('#{test_run_site_entries_path(@site)}', {
+        'page_source_id': entry_page_source_id,
+        'scraping_code': entry_scraping_code,
+      });
+      return false;
+    })
+  })

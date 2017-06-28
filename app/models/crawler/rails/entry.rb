@@ -8,7 +8,9 @@ module Crawler::Rails
     def scrape
       file = open(page_source.url)
       block = eval(scraping_code) # danger!!
-      block.call(Nokogiri::HTML(file.read.toutf8, nil, 'utf-8'))
+      out = block.call(Nokogiri::HTML(file.read.toutf8, nil, 'utf-8'))
+      Rails.logger.info out
+      out
     end
   end
 end

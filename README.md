@@ -9,6 +9,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'crawler-rails'
+gem 'jquery-rails' # dependency
 ```
 
 And then execute:
