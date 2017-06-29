@@ -1,0 +1,17 @@
+h4 crawling_jobs per site
+
+table border=1
+  thead
+    tr
+      th crawling_job id
+      th site name
+      th created_at
+      th last status
+  tbody
+    - @crawling_jobs.each do |crawling_job|
+      tr
+        td = link_to crawling_job.id, crawling_job
+        td = link_to crawling_job.site.name, crawling_job.site
+        td = crawling_job.created_at
+        td
+          | (すべてgreen ならsuccess

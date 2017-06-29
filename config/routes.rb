@@ -9,5 +9,5 @@ Crawler::Rails::Engine.routes.draw do
       end
     end
   end
-  resources :crawling_jobs, only: %i(show)
+  resources :crawling_jobs, only: %i(index show)
 end

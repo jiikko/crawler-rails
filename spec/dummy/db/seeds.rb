@@ -41,4 +41,17 @@ EOH
 site.entries.create!(name: '団体',
                      page_source_id: ps.id,
                      scraping_code: scraping_code)
+
+
+site = Crawler::Rails::Site.create!(name: '旭山動物園')
+ps = site.page_sources.create!(name: '詳細ページ', url: 'http://www.city.asahikawa.hokkaido.jp/asahiyamazoo/generalinformation/d052849.html')
+scraping_code = <<-EOH
+->(doc) {
+ doc.search("table:nth(1) tr:nth(2) td:nth(2)").text
+}
+EOH
+site.entries.create!(name: '大人（高校生以上） 料金',
+                     page_source_id: ps.id,
+                     scraping_code: scraping_code)
+
 puts 'success!!'
