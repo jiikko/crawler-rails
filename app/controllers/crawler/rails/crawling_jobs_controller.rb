@@ -2,7 +2,20 @@ module Crawler
   module Rails
     class CrawlingJobsController < ApplicationController
       def index
-        @crawling_jobs = CrawlingJob.latests_per_site
+        if params[:view_type].nil?
+          redirect_to(crawling_jobs_path(view_type: 'latests_per_site'))
+          return
+        end
+
+        @failure_crawling_jobs, @success_crawling_jobs =
+          case params[:view_type]
+          when 'latests_per_site'
+             [CrawlingJob.latests_per_site, CrawlingJob.latests_per_site]
+          when 'day'
+            [CrawlingJob.all, CrawlingJob.all]
+          else
+            [CrawlingJob.all, CrawlingJob.all]
+          end
       end
 
       def show
