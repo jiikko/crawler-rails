@@ -11,6 +11,7 @@ module Crawler::Rails
     has_many :crawling_logs
 
     def scrape_with_logging(crawling_job_id: )
+      return unless enable
       crawling_log = crawling_logs.create!(crawling_job_id: crawling_job_id)
       result = scrape
       case result[:status]

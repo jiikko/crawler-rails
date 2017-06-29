@@ -41,4 +41,3 @@ $ gem install crawler-rails
 * 1サイトで1ページをcrawlする場合は保存済みのHTMLを参照する
   * 毎回GETしない
 * ステータスコードをみてサーバエラーならリトライする処理をいれる
-* entryies に enable カラムを追加して crawl now でskipする

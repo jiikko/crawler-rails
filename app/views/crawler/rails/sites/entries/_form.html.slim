@@ -3,6 +3,9 @@
     = f.label :name
     = f.text_field :name
   p
+    = f.label :enable
+    = f.check_box :enable
+  p
     = f.label :page_source
     = f.select :page_source_id, @site.page_sources.map { |x| [x.url, x.id] }
   p
