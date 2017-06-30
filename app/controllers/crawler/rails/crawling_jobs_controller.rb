@@ -18,8 +18,8 @@ module Crawler
             [CrawlingJob.latests_per_site.failure, CrawlingJob.latests_per_site.success]
           when view_type_time_series
             @h2_text = '日付でクロール'
-            [ CrawlingJob.failure.where!(created_at: params[:start_on]..params[:end_on]),
-              CrawlingJob.success.where!(created_at: params[:start_on]..params[:end_on])
+            [ CrawlingJob.failure.where!(created_at: params[:start_on]..params[:end_on]).order(id: :desc),
+              CrawlingJob.success.where!(created_at: params[:start_on]..params[:end_on]).order(id: :desc)
             ]
           else
             raise('not found view_type')

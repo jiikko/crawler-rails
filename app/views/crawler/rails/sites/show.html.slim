@@ -5,7 +5,7 @@ p = link_to 'new page source', new_site_page_source_path(@site)
 ul
   - @site.page_sources.each do |page_source|
     li
-      = page_source.url
+      = link_to page_source.name, page_source.url
       | |
       = link_to :edit, [:edit, @site, page_source]
 h3 entries
@@ -17,14 +17,16 @@ ul
       ul
         li
           | from:
-          = entry.page_source.name
-          | :
-          = link_to entry.page_source.url, entry.page_source.url
+          = link_to entry.page_source.name, entry.page_source.url
         li = link_to :edit, [:edit, @site, entry]
 
 h3 crawl jobs
 = link_to 'crawl now', [:crawl, @site], method: :post
 
 ul
-  - @site.crawling_jobs.each do |crawling_job|
-    li = link_to crawling_job.created_at.to_s(:db), crawling_job_path(crawling_job)
+  - @site.crawling_jobs.order(id: :desc).each do |crawling_job|
+    li = link_to crawling_job_path(crawling_job) do
+      = crawling_job.created_at.to_s(:db)
+      | (
+      = crawling_job.success ? :success : :failure
+      |)
