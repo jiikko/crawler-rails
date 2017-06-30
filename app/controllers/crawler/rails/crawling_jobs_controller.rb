@@ -30,6 +30,8 @@ module Crawler
         @crawling_job = CrawlingJob.find(params[:id])
       end
 
+      private
+
       def view_type_latests_per_site
         'latests_per_site'
       end
