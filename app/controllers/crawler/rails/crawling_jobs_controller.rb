@@ -10,11 +10,13 @@ module Crawler
         @failure_crawling_jobs, @success_crawling_jobs =
           case params[:view_type]
           when 'latests_per_site'
-             [CrawlingJob.latests_per_site, CrawlingJob.latests_per_site]
+            @h2_text = 'サイト毎最新のクロール'
+            [CrawlingJob.latests_per_site.failure, CrawlingJob.latests_per_site.success]
           when 'day'
-            [CrawlingJob.all, CrawlingJob.all]
+            @h2_text = '日付でクロール'
+            [CrawlingJob.failure, CrawlingJob.success]
           else
-            [CrawlingJob.all, CrawlingJob.all]
+            [CrawlingJob.failure, CrawlingJob.success]
           end
       end
 

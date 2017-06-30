@@ -6,7 +6,13 @@ module Crawler::Rails
 
     def crawl
       crawling_job = crawling_jobs.create!
-      entries.each { |e| e.scrape_with_logging(crawling_job_id: crawling_job.id) }
+      crawling_logs =
+        entries.map do |e|
+          crawling_log = e.scrape_with_logging(crawling_job_id: crawling_job.id)
+        end
+      unless crawling_logs.all?(&:status_success?)
+        crawling_job.update!(success: false)
+      end
     end
   end
 end

@@ -4,6 +4,12 @@ module Crawler::Rails
 
     has_many :crawling_logs
 
+    scope :success, ->(){
+      where(success: true)
+    }
+    scope :failure, ->(){
+      where(success: false)
+    }
     scope :latests_per_site, ->() {
       join_sql = <<-SQL
 inner join (

@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20170628141505) do
 
   create_table "crawler_rails_crawling_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "site_id", null: false
+    t.boolean "success", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_crawler_rails_crawling_jobs_on_site_id"

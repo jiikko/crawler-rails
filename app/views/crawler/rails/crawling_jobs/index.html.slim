@@ -1,26 +1,33 @@
 = link_to_unless_current 'サイト毎の最新のクロール', crawling_jobs_path(view_type: 'latests_per_site')
 br
 = link_to_unless_current '日付でクロール', crawling_jobs_path(view_type: 'day')
+
+
+h2 = @h2_text
+
 - if params[:view_type] == 'day'
   p 日付で抽出できるようにするフォームを表示する
 
-h4 サイト毎の最新のクロール(失敗)
-table border=1
-  thead
-    tr
-      th crawling_job id
-      th site name
-      th created_at
-      th last status
-  tbody
-    - @failure_crawling_jobs.each do |crawling_job|
+h4 失敗
+- if @failure_crawling_jobs.empty?
+  | なし
+- else
+  table border=1
+    thead
       tr
-        td = link_to crawling_job.id, crawling_job
-        td = link_to crawling_job.site.name, crawling_job.site
-        td = crawling_job.created_at
-        td = crawling_job.crawling_logs.map(&:status).uniq.join(', ')
+        th crawling_job id
+        th site name
+        th created_at
+        th last status
+    tbody
+      - @failure_crawling_jobs.each do |crawling_job|
+        tr
+          td = link_to crawling_job.id, crawling_job
+          td = link_to crawling_job.site.name, crawling_job.site
+          td = crawling_job.created_at
+          td = crawling_job.crawling_logs.map(&:status).uniq.join(', ')
 
-h4 サイト毎の最新のクロール(成功)
+h4 成功
 table border=1
   thead
     tr
