@@ -1,12 +1,16 @@
-= link_to_unless_current 'サイト毎の最新のクロール', crawling_jobs_path(view_type: 'latests_per_site')
+= link_to_unless params[:view_type] == view_type_latests_per_site, 'サイト毎の最新のクロール', crawling_jobs_path(view_type: view_type_latests_per_site)
 br
-= link_to_unless_current '日付でクロール', crawling_jobs_path(view_type: 'day')
-
+= link_to_unless params[:view_type] == view_type_time_series, '日付でクロール', crawling_jobs_path(view_type: view_type_time_series)
 
 h2 = @h2_text
-
-- if params[:view_type] == 'day'
-  p 日付で抽出できるようにするフォームを表示する
+- if params[:view_type] == view_type_time_series
+  = form_tag crawling_jobs_path, method: :get do |f|
+    = hidden_field_tag :view_type, params[:view_type]
+    p
+      = date_field_tag :start_on, params[:start_on]
+      | 〜
+      = date_field_tag :end_on, params[:end_on]
+    p = submit_tag
 
 h4 失敗
 - if @failure_crawling_jobs.empty?
