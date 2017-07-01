@@ -2,4 +2,38 @@
   p
     = f.label :name
     = f.text_field :name
+  p
+    | 毎日実行する時間
+    p
+      label
+        = f.radio_button :schedule, 'none', checked: f.object.schedule.nil?
+        | no_schedule
+    p
+      label
+        = f.radio_button :schedule, '', checked: f.object.schedule.present?
+        select name='schedule_hour' data-select-schedule='hour'
+          - hour = f.object.schedule&.split(':')&.at(0).to_i
+          - 24.times.with_index(1) do |n, i|
+            option selected=(hour.to_i == i) value=i = i
+        | :
+        select name='schedule_minute' data-select-schedule='minute'
+          - minute = f.object.schedule&.split(':')&.at(1).to_i
+          - 60.times.with_index(1) do |n, i|
+            option selected=(minute == i) value=i = i
   p = f.submit
+
+javascript:
+  function set_schedule() {
+    var minute = $("select[data-select-schedule='minute']").val();
+    console.log(minute)
+    var hour = $("select[data-select-schedule='hour']").val();
+    console.log(hour)
+    $("#site_schedule_on").val(hour + ":" + minute);
+  }
+  $(function() {
+    set_schedule();
+    $(document).on('change', '[data-select-schedule]', function(){
+      set_schedule();
+      $("#site_schedule_on").prop('checked', true);
+    })
+  })

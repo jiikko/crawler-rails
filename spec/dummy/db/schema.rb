@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170628141505) do
 
   create_table "crawler_rails_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 191, null: false
+    t.string "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
