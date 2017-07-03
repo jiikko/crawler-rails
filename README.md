@@ -35,7 +35,8 @@ $ gem install crawler-rails
   * `cd spec/dummy && bundle exec rake jobs:work`
 
 ## TODO
-* 定期実行する
 * 1サイトで1ページをcrawlする場合は保存済みのHTMLを参照する
   * 毎回GETしない
 * ステータスコードをみてサーバエラーならリトライする処理をいれる
+* 重複してキューできないようにする
+* すべてのサイトに対してキュークロースする

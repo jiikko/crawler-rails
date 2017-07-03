@@ -1,4 +1,9 @@
 h1 = @site.name
+- if @site.schedule.present?
+  = link_to "毎日実行を有効にする(実行時間は#{@site.schedule})", queue_crawl_site_path(@site), method: :post
+- else
+  | 実行時間が設定されていないので毎日実行はできません
+
 p = link_to 'edit site', edit_site_path(@site)
 h3 page sources
 p = link_to 'new page source', new_site_page_source_path(@site)

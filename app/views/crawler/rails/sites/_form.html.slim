@@ -10,7 +10,7 @@
         | no_schedule
     p
       label
-        = f.radio_button :schedule, '', checked: f.object.schedule.present?
+        = f.radio_button :schedule, 'on', checked: f.object.schedule.present?
         select name='schedule_hour' data-select-schedule='hour'
           - hour = f.object.schedule&.split(':')&.at(0).to_i
           - 24.times.with_index(1) do |n, i|
@@ -27,7 +27,6 @@ javascript:
     var minute = $("select[data-select-schedule='minute']").val();
     console.log(minute)
     var hour = $("select[data-select-schedule='hour']").val();
-    console.log(hour)
     $("#site_schedule_on").val(hour + ":" + minute);
   }
   $(function() {
