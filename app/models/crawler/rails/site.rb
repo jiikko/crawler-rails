@@ -8,7 +8,7 @@ module Crawler::Rails
       where.not(schedule: [nil, ''])
     }
 
-    def crawl(next_queue: false)
+    def crawl
       crawling_job = crawling_jobs.create!
       crawling_logs =
         entries.map do |e|
@@ -17,14 +17,13 @@ module Crawler::Rails
       unless crawling_logs.all?(&:status_success?)
         crawling_job.update!(success: false)
       end
-      queue_crawl if next_queue
     end
 
     # TODO 重複してqueue しないようにする
-    def queue_crawl
+    def crawl_to_tomorrow
       next_on = Date.today + 1.day
       run_at = "#{next_on} #{hh_mm_on_schedule}:00"
-      delay(run_at: run_at).crawl(next_queue: true)
+      delay(run_at: run_at).crawl
     end
 
     def schedule=(value)

@@ -41,12 +41,6 @@ module Crawler
         redirect_to @site, notice: 'キューしました'
       end
 
-      def queue_crawl
-        @site = Site.find(params[:id])
-        @site.queue_crawl
-        redirect_to @site, notice: 'キューしました'
-      end
-
       private
 
       def site_params
